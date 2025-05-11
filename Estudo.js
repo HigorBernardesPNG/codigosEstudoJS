@@ -38,15 +38,16 @@ function criarCarrinho(){
             produtos.push({nome:produtoNome, valor:produtoPreco});
         },
         listar(){
-            for (const produto of produtos){
+            for (produto of produtos){
                 console.log(`Produto: ${produto.nome} - R$: ${produto.valor}`);
             };
         },
         total(){
-            console.log(produtos);
+            const totalProdutos = produtos.reduce((contador, produtoAtual) => contador+produtoAtual.valor,0);
+            console.log(`Valor total do carrinho: ${totalProdutos}`);
         },
         limpar(){
-            produtos == 0 ? console.log("Carrinho já está vazio") : (produtos = 0, console.log("Carrinho foi esvaziado"));
+            produtos.length === 0 ? console.log("Carrinho já está vazio") : (produtos.length = 0, console.log("Carrinho foi esvaziado"));
         }
     }
     
@@ -61,4 +62,3 @@ carrinho.listar();
 carrinho.total();
 carrinho.limpar();
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------
