@@ -62,3 +62,62 @@ carrinho.listar();
 carrinho.total();
 carrinho.limpar();
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// 🧩 Desafio — Estoque com Alerta de Reposição
+// 📝 Enunciado:
+// Crie uma função criarEstoque() que retorna um objeto com os seguintes métodos:
+
+// ✅ adicionar(produto, quantidade)
+// Adiciona um item ao estoque com nome e quantidade.
+
+// ✅ listar()
+// Mostra todos os produtos no formato:
+// Produto: X - Quantidade: Y
+
+// ✅ verificarReposicao(limite)
+// Lista os produtos cuja quantidade está igual ou abaixo do valor de limite.
+
+// ✅ remover(produto)
+// Remove o produto do array (❗aqui está o novo ponto!).
+
+function criarEstoque(){
+    const produtos = [];
+    
+    return {
+      
+      adicionar(nomeProduto, quantidadeProduto){
+        produtos.push({nome:nomeProduto, quantidade:quantidadeProduto});
+      },
+      listar(){
+        for (produto of produtos){
+            console.log(`Produto: ${produto.nome} - Quantidade: ${produto.quantidade}`);
+        };
+      },
+      verificarReposicao(limite){
+        const itensParaReposicao = produtos.filter(produto => produto.quantidade <= limite);
+        for (item of itensParaReposicao) {
+            console.log(`Produto: ${item.nome} - Quantidade: ${item.quantidade}`);
+         };
+      },
+      remover(produto){
+        const removerProduto = produtos.filter(produtoRemovido => produtoRemovido.nome !== produto); 
+        
+        // removerProduto.length === 0 ? console.log("Produto não existe") : (removerProduto.length = 0, console.log("Produto foi removido"));
+      }
+        
+    };
+    
+}
+
+const estoque = criarEstoque();
+
+estoque.adicionar("Macarrão", 2);
+estoque.adicionar("Ovo", 3);
+estoque.adicionar("Leite", 4);
+// estoque.listar();
+estoque.remover("ovo");
+estoque.listar();
+// estoque.verificarReposicao(3);
+
