@@ -38,7 +38,7 @@ function criarCarrinho(){
             produtos.push({nome:produtoNome, valor:produtoPreco});
         },
         listar(){
-            for (produto of produtos){
+            for (const produto of produtos){
                 console.log(`Produto: ${produto.nome} - R$: ${produto.valor}`);
             };
         },
