@@ -91,20 +91,20 @@ function criarEstoque(){
         produtos.push({nome:nomeProduto, quantidade:quantidadeProduto});
       },
       listar(){
-        for (produto of produtos){
+        for (const produto of produtos){
             console.log(`Produto: ${produto.nome} - Quantidade: ${produto.quantidade}`);
         };
       },
       verificarReposicao(limite){
         const itensParaReposicao = produtos.filter(produto => produto.quantidade <= limite);
-        for (item of itensParaReposicao) {
+        for (const item of itensParaReposicao) {
             console.log(`Produto: ${item.nome} - Quantidade: ${item.quantidade}`);
          };
       },
       remover(produto){
-        const removerProduto = produtos.filter(produtoRemovido => produtoRemovido.nome !== produto); 
+        const indice = produtos.findIndex(produtoAtual => produtoAtual.nome === produto);
         
-        // removerProduto.length === 0 ? console.log("Produto não existe") : (removerProduto.length = 0, console.log("Produto foi removido"));
+        indice === -1 ? console.log("Produto não foi encontrado") : (produtos.splice(indice, 1), console.log("Produto foi excluido do carrinho"));
       }
         
     };
@@ -116,8 +116,8 @@ const estoque = criarEstoque();
 estoque.adicionar("Macarrão", 2);
 estoque.adicionar("Ovo", 3);
 estoque.adicionar("Leite", 4);
-// estoque.listar();
-estoque.remover("ovo");
+estoque.remover("Leite");
+estoque.remover("Agua");
 estoque.listar();
-// estoque.verificarReposicao(3);
+estoque.verificarReposicao(2);
 
