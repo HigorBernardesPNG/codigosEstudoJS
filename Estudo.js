@@ -121,3 +121,108 @@ estoque.remover("Agua");
 estoque.listar();
 estoque.verificarReposicao(2);
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 🧩 Desafio — Vender Produto no Estoque
+// 📝 Enunciado:
+// Adicione um novo método chamado vender(nomeProduto, quantidadeVendida) dentro do seu objeto de estoque.
+
+// Esse método deve:
+
+// Procurar o produto pelo nome usando .findIndex()
+
+// Se não encontrar, imprimir: "Produto não encontrado."
+
+// Se a quantidade em estoque for menor que a solicitada, imprimir: "Estoque insuficiente. Só temos X unidades."
+
+// Se tiver quantidade suficiente, subtrair a quantidade vendida do estoque e imprimir: "Venda realizada. Restam X unidades do produto."
+
+
+function criarEstoque(){
+    const produtos = [];
+    
+    return {
+        
+      //ADICIONAR ----
+      adicionar(nomeProduto, quantidadeProduto){
+        produtos.push({nome:nomeProduto, quantidade:quantidadeProduto});
+      },
+      
+      //LISTAR ----
+      listar(){
+        console.log("Lista de produtos:")
+        for (const produto of produtos){
+            console.log(`Produto: ${produto.nome} - Quantidade: ${produto.quantidade}`);
+        };
+      },
+      
+      //VENDER ----
+      vender(nomeProduto, quantidadeVendida){
+        const buscarProduto = produtos.findIndex(produtoAtual => produtoAtual.nome === nomeProduto);
+        if(buscarProduto === -1){ 
+            console.log("Produto não foi encontrado");
+            console.log(" "); //Pula linha
+        }else if (produtos[buscarProduto].quantidade < quantidadeVendida){
+            console.log(`Estoque do produto "${nomeProduto}" insuficiente. No momento temos apenas ${produtos[buscarProduto].quantidade} unidade em estoque.`);
+            console.log(" "); //Pula linha
+        }else {
+            produtos[buscarProduto].quantidade = produtos[buscarProduto].quantidade - quantidadeVendida;
+            console.log("Venda realizada");
+            console.log(`Restam ${produtos[buscarProduto].quantidade} unidades do produto "${produtos[buscarProduto].nome}"`)
+            console.log(" "); //Pula linha
+        }
+      },
+      
+      //VERIFICARREPOSICAO ----
+      verificarReposicao(limite){
+        const itensParaReposicao = produtos.filter(produto => produto.quantidade <= limite);
+        console.log("Produtos para reposição:");
+        for (const item of itensParaReposicao) {
+            console.log(`Produto: ${item.nome} - Quantidade: ${item.quantidade}`);
+         };
+         console.log(" "); //Pula linha
+      },
+      
+      //REMOVER ----
+      remover(produto){
+        const buscarProduto = produtos.findIndex(produtoAtual => produtoAtual.nome === produto);
+        
+        if(buscarProduto === -1){
+            console.log(`Produto "${produto}" não foi encontrado`);
+        } else {
+            console.log(`Produto "${produtos[buscarProduto].nome}" foi excluido do carrinho`);
+             produtos.splice(buscarProduto, 1)
+        }
+        console.log(" "); //Pula linha
+      }
+        
+    };
+    
+}
+
+const estoque = criarEstoque();
+
+// -------------ADICIONAR------------------
+estoque.adicionar("Macarrão", 2);
+estoque.adicionar("Ovo", 3);
+estoque.adicionar("Leite", 4);
+estoque.adicionar("Carne", 6);
+// ----------------------------------------
+
+// -----------------VENDER-----------------
+estoque.vender("Ovo", 3);
+estoque.vender("Macarrão", 1);
+estoque.vender("Macarrão", 3);
+// ----------------------------------------
+
+// ----------------REMOVER-----------------
+estoque.remover("Leite");
+estoque.remover("Amora");
+// ----------------------------------------
+
+// -------------VERIFICAR-REPO-------------
+estoque.verificarReposicao(3);
+// ----------------------------------------
+
+estoque.listar();
+
