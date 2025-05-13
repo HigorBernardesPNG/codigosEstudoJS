@@ -357,5 +357,44 @@ estoque.verificarReposicao(3);
 
 estoque.listar();
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+// 🧩 Desafio — Contagem de Palavras Curtas
+// 📝 Enunciado:
+// Você tem um array com palavras de diferentes tamanhos:
+
+// const palavras = ["mesa", "cadeira", "oi", "janela", "sol", "copo", "amigo"];
+// Crie um código que:
+
+// Conte quantas palavras têm 3 letras ou menos
+
+// Imprima esse total no final
+
+// 🎯 Regras:
+// O foco do desafio é usar um laço para percorrer o array
+
+// Você não deve usar .filter() nem .reduce() ainda
+
+// Só laço + lógica de comparação
+
+// Pode criar variáveis de apoio (ex: contador)
+
+// 📌 Exemplo esperado no console:
+
+// Total de palavras com até 3 letras: 2
+// ("oi" e "sol")
+
+const palavras = ["Mesa","Cadeira","Oi","Janela","Sol","Copo","Amigo", "pa"];
+let palavrasMenores = [];
+
+for (let contador = 0; contador < palavras.length; contador++){
+    if (palavras[contador].length < 4 ){
+        palavrasMenores.push(palavras[contador]);
+    }  
+}
+console.log(`As palavras com até três letras são: ${palavrasMenores}`);
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
