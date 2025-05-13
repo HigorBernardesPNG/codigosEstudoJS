@@ -396,5 +396,40 @@ console.log(`As palavras com até três letras são: ${palavrasMenores}`);
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// 🧩 Desafio 1 — Número Secreto
+// Enunciado:
+// Você tem uma variável chamada numeroSecreto, que guarda um número entre 1 e 10.
+// Seu objetivo é tentar adivinhar esse número com base em um número de tentativas fictício (simulado com uma variável que muda a cada laço).
 
+// Regras:
+
+// Você deve simular as tentativas com um contador
+
+// A cada “tentativa”, imprima: Tentativa X: Ainda não acertou
+
+// Quando encontrar o número, imprima: Acertou na tentativa X!
+
+// Entrada:
+
+// numeroSecreto = 7
+
+// Comece testando do número 1 até acertar
+
+let numeroSecreto = Math.floor(Math.random() * 10) + 1;
+
+let chute = 0;
+let tentativa = 0;
+
+while(numeroSecreto !== chute){
+    
+    chute = Math.floor(Math.random() * 10) +1;
+    tentativa++;
+    if(chute == numeroSecreto){
+        console.log(`Acertou!! Numero chutado: ${chute}, Número secreto: ${numeroSecreto}`);
+        console.log(`Acertou na ${tentativa} tentativa`);
+    }
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
