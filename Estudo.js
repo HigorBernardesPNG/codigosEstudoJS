@@ -433,3 +433,39 @@ while(numeroSecreto !== chute){
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// 🧩 Desafio 2 — Contador de Vogais
+// Enunciado:
+// Você tem uma string (ex: "javascript é massa").
+// Seu objetivo é contar quantas vogais existem nela (a, e, i, o, u).
+
+// Regras:
+
+// Percorra cada letra da string
+
+// Verifique se ela é uma vogal
+
+// Conte quantas existem
+
+// Ignore espaços e letras maiúsculas (dica: pode converter tudo pra minúsculo se quiser)
+
+const string = "JavaScript é Massa";
+
+let contadorVogais = 0;
+let vogaisPresentes = [];
+let contadorVogaisPresentes = 0;
+const vogais = "aeiou";
+    
+for(contador = 0; contador < string.length; contador++){
+    
+    if(vogais.includes(string[contador].toLowerCase())){
+        vogaisPresentes.push(string[contador]);
+        contadorVogais++;
+    }
+    
+}
+
+console.log(`A palavra "${string}" tem ${contadorVogais} vogais`);
+console.log(`Vogais presentes: ${vogaisPresentes}`);
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
