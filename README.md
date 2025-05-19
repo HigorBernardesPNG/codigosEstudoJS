@@ -38,18 +38,18 @@ git clone https://github.com/HigorBernardesPNG/codigosEstudoJS.git
 cd codigosEstudoJS
 Depois é só abrir no VS Code ou no seu editor favorito e executar os trechos de código como preferir (recomendo o uso do Node.js para os testes).
 
-🧠 Porque este repositório existe?
+`🧠 Porque este repositório existe?`
 Esse espaço me ajuda a manter tudo organizado e também serve como um histórico da minha evolução. Se te ajudar de alguma forma, fique à vontade para usar como referência ou estudar junto.
 
-📩 Contribuição
+`📩 Contribuição`
 Esse é um repositório pessoal de estudos, então por enquanto não estou aceitando contribuições externas.
 Mas sugestões e feedbacks são sempre bem-vindos! 😄
 
-📅 Atualizações
+`📅 Atualizações`
 Pretendo atualizar sempre que estiver estudando algo novo.
 Então volta e meia vão aparecer pastas novas, códigos diferentes e novas ideias testadas por aqui.
 
-📄 Licença
+`📄 Licença`
 Este projeto não possui licença oficial porque é apenas para fins de estudo pessoal.
 
 Feito com 💻 e curiosidade por [Higor Bernardes](https://github.com/HigorBernardesPNG)
