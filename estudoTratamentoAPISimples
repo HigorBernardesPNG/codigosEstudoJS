@@ -58,7 +58,7 @@
 
 /*Consumo e tratamento de uma lista de usuários consumida por uma API*/
 
-    <!DOCTYPE html>
+      <!DOCTYPE html>
   <html lang="pt-BR">
   <head>
     <meta charset="UTF-8">
@@ -104,9 +104,11 @@
               item.classList.add("item");
 
               item.innerHTML = `
-                <strong>Nome:</strong> ${usuario.name} <br>
-                <strong>Email:</strong> ${usuario.email} <br>
-                <strong>Cidade:</strong> ${usuario.address.city}
+                <div>
+                  <strong>Nome:</strong> ${usuario.name} <br>
+                  <strong>Email:</strong> ${usuario.email} <br>
+                  <strong>Cidade:</strong> ${usuario.address.city}
+                </div><br>
               `;
 
               resultado.appendChild(item);
@@ -120,4 +122,5 @@
     </script>
   </body>
   </html>
+
 
