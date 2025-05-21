@@ -55,3 +55,71 @@
 </html>
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*Consumo e tratamento de uma lista de usuários consumida por uma API*/
+
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo de API com JavaScript</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        background-color: #f5f5f5;
+      }
+      h1 {
+        margin-bottom: 1rem;
+      }
+      #resultado {
+        margin-top: 2rem;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exemplo de Consumo de API (utilizando Fetch)</h1>
+    <button id="buscar">Buscar Dados</button>
+    <div id="resultado">Clique no botão para carregar os dados.</div>
+
+    <script>
+      const botao = document.getElementById("buscar");
+
+      botao.addEventListener("click", () => {
+          resultado.innerHTML = "Carregando...";
+
+          fetch("https://jsonplaceholder.typicode.com/users")
+          .then(resposta => resposta.json())
+
+          .then(dado => {
+            resultado.innerHTML = "";
+
+            for (const usuario of dado){
+              const item = document.createElement("div");
+              item.classList.add("item");
+              // console.log(dado.name[1]);
+
+              item.innerHTML = `
+                <strong>Nome:</strong> ${usuario.name} <br>
+                <strong>Email:</strong> ${usuario.email} <br>
+                <strong>Cidade:</strong> ${usuario.address.city}
+                resultado.appendChild(item);  
+              `
+            }
+              
+
+          })
+
+          .catch(erro => {
+              resultado.innerHTML = `<span class="erro">Erro ao carregar os dados.</span>`;
+              console.error(erro);
+          });
+      });
+    </script>
+  </body>
+  </html>
