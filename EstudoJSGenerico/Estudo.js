@@ -528,5 +528,15 @@ function criarUsuario(nome, idade) {
 
 console.log(criarUsuario("Higor", 12));
 
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 3 Crie uma função que retorne status de pagamento.
+
+function statusPagamento(valor) {
+  return (typeof valor === "number" && valor > 0)
+    ? { valor, status: "pago" }
+    : { erro: "Pagamento inválido. Valor deve ser maior que zero." };
+}
+
 
 
