@@ -469,3 +469,64 @@ console.log(`Vogais presentes: ${vogaisPresentes}`);
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+// Exercícios – Retorno estruturado
+// 1 Crie uma função que retorne um objeto de produto (nome, preço, disponível).
+
+
+/*Objeto de produtos*/
+
+function objeto(){
+    const produtoLista = [];
+    
+    return{
+        produto(nomeProduto,precoProduto,disponivelProduto){
+            produtoLista.push({nome:nomeProduto, preço:precoProduto, disponibilidade:disponivelProduto});
+            
+            console.log(produtoLista)
+        }
+    }
+}
+
+const listaProduto = objeto();
+
+listaProduto.produto("Arroz",4, 2);
+
+// Fiz mais que o exercicio pedia. Correção:
+
+function criarProduto(nome, preco, disponivel) {
+    return {
+        nome: nome,
+        preco: preco,
+        disponivel: disponivel
+    };
+}
+
+const produto = criarProduto("Arroz", 4, true);
+console.log(produto);
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 2 Crie uma função que retorne erro ou sucesso ao cadastrar usuário.
+
+/*Erro ou sucesso*/
+
+function criarUsuario(nome,idade){
+    return (!!nome && !!idade)
+    ?{nome:nome, idade:idade, ativo:true}
+    : {erro:`Nome e senha obrigatorios`};
+};
+
+console.log(criarUsuario("higor", 12));
+
+// 2️⃣ Versão final recomendada
+function criarUsuario(nome, idade) {
+  return (!!nome && !!idade)
+    ? { nome, idade, ativo: true }
+    : { erro: "Nome e idade obrigatórios" };
+}
+
+console.log(criarUsuario("Higor", 12));
+
+
+
