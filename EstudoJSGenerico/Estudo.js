@@ -555,4 +555,49 @@ function mostraValidade(valor){
 
 mostraValidade(1);
 
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Exercício 3: Crie uma função calcularTotal(preco, quantidade) que apenas calcule o total.
+
+/*Função de calculo*/
+
+function validacaoValor(valorA, valorB){
+    return(typeof valorA == "number" && typeof valorB == "number");
+}
+
+function calcularTotal(valorA, valorB){
+    return validacaoValor(valorA, valorB)
+    ? valorA + valorB
+    : {valido:false};
+}
+
+console.log(calcularTotal(2,2));
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*Função de calculo*/
+
+function validacaoPreco(preco){
+    return(typeof preco == "number" && preco >= 1);
+}
+
+function validacaoQuantidade(quantidade){
+    return(typeof quantidade == "number" && quantidade >= 1 && quantidade >= 1 && Number.isInteger(quantidade));
+}
+
+function retornoValidacao(preco, quantidade){
+   return (validacaoPreco(preco) && validacaoQuantidade(quantidade))
+   ? {validar:true}
+   : {validar:false};
+}
+
+function calcularTotal(preco, quantidade){
+    if (retornoValidacao == {validar:true}){
+        return preco*quantidade
+    }else{
+        return "valor Invalido.";
+    }
+}
+
+console.log(calcularTotal(2,2));
 
