@@ -538,5 +538,21 @@ function statusPagamento(valor) {
     : { erro: "Pagamento inválido. Valor deve ser maior que zero." };
 }
 
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Exercício 2: Crie uma função auxiliar que valide 
+quantidade (inteiro >= 1). /*Função valida quantidade*/ 
+function validaQuantidade(valor){
+    return (typeof valor === "number" && valor >=1); 
+} 
+function retornoValidade(valor){ 
+    return (validaQuantidade(valor)) 
+        ?{sucesso:true} 
+        :{sucesso:false}; } 
+function mostraValidade(valor){ 
+    console.log(retornoValidade(valor)); 
+} 
+
+mostraValidade(1);
 
 
