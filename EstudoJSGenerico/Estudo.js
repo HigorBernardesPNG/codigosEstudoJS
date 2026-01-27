@@ -601,3 +601,72 @@ function calcularTotal(preco, quantidade){
 
 console.log(calcularTotal(2,2));
 
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 2) Crie uma função que receba uma lista de preços e retorne o valor total da soma.
+/*Função lista de preço e retorno*/ 
+function listaTotal(listaPrecos){
+    let valorSoma = 0; 
+    for(let i=0; i<listaPrecos.length; i++){ valorSoma = valorSoma + listaPrecos[i]; 
+    } 
+    return valorSoma; } 
+console.log(listaTotal([2,2,3]));
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*3) Crie uma função que receba uma lista de usuários (objetos com nome e ativo) e retorne apenas
+os usuários ativos.*/
+/*função lista de usuários*/
+
+function listaUsuarios(usuarios){
+    const usuariosFiltrados = usuarios.filter(p => p.ativo === true);
+    return usuariosFiltrados;
+    
+}
+
+console.log(listaUsuarios([
+    {nome:"Higor",ativo:true},
+    {nome:"Jordana", ativo:true},
+    {nome:"Karol", ativo:false}
+]));
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 4) Crie uma função que busque um produto pelo nome dentro de um array de produtos.
+
+/*funçao de busca de produtos*/
+
+/*funçao de busca de produtos*/
+
+const listaProdutos = [
+    {produto:"arroz", valor:22, estoque:true},
+    {produto:"feijão", valor:22, estoque:false},
+    {produto:"farofa", valor:22, estoque:true},
+    ];
+
+function buscaProdutos(produto){
+    
+    const produtoListado = listaProdutos.find(p => p.produto === produto);
+    
+    return produtoListado;
+    
+}
+
+console.log(buscaProdutos("arroz"));
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 5) Crie uma função que valide se todos os valores de um array são números válidos.
+/*Validação de numeros validos*/
+
+function validacaoNumeros(numeros){
+    const valoresValidos = numeros.every(n => 
+    Number.isInteger(n) &&
+    Number.isFinite(n) &&
+    n > 0
+    );
+    
+    return valoresValidos;
+}
+
+console.log(validacaoNumeros([1,2,4,0]));
