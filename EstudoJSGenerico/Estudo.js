@@ -670,3 +670,65 @@ function validacaoNumeros(numeros){
 }
 
 console.log(validacaoNumeros([1,2,4,0]));
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// 🎯 Objetivo
+// Criar uma função principal que retorne o valor total da soma dos preços apenas dos produtos ativos.
+
+const itensAtivos = true;
+const itensAusentes = false;
+
+/*Filtrar itens ativos*/
+
+function produtosAtivos(produto){
+    const ativos = produto
+    .filter(n => n.ativo);
+    return ativos;
+}
+
+/*Validar valores*/
+
+function valoresValidos(produtos){
+    const validos = produtosAtivos(produtos)
+    .filter(n => n.preco > 0);
+    return validos;
+}
+
+/*Somar valores validos*/
+function somaValores(produtos){
+    const soma = valoresValidos(produtos)
+    .reduce((acc,n) => acc + n.preco, 0);
+    return soma;
+}
+
+/*Uso*/
+console.log(somaValores([
+    {nome:"Arroz", preco:20, ativo:itensAtivos},
+    {nome:"Feijão", preco:8, ativo:itensAtivos},
+    {nome:"Farofa", preco:6, ativo:itensAusentes}
+    ]));
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*Exercício 1
+Crie uma função que receba um array de pedidos (objeto com cliente, valor, pago) e retorne
+apenas os pedidos pagos.*/
+
+/*Exercício 1
+Crie uma função que receba um array de pedidos (objeto com cliente, valor, pago) e retorne
+apenas os pedidos pagos.*/
+
+/*Valida a necessidade do pedido a ser pago*/
+function necessidadePagar(pedidos){
+    const necessidadePagamento = pedidos.filter(n => n.pago);
+    return necessidadePagamento;
+}
+
+console.log(necessidadePagar([
+    {cliente:"higor", valor:0, pago:true},
+    {cliente:"Jordana", valor:0, pago:true}, 
+    {cliente:"higor", valor:89.99, pago:false}
+    ]));
+
+
