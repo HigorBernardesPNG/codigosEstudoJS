@@ -731,4 +731,61 @@ console.log(necessidadePagar([
     {cliente:"higor", valor:89.99, pago:false}
     ]));
 
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Exercício 1 — Validação simples
+// Crie uma função auxiliar que receba um pedido { valor, pago } e retorne true ou false.
+// Regras: valor deve ser number, valor > 0, pago deve ser boolean.
+// Exercício 2 — Filtrar pedidos válidos
+// Receba uma lista de pedidos, use a função de validação e retorne apenas os válidos.
+// Exercício 3 — Calcular total faturado
+// Receba apenas pedidos válidos, some apenas os pagos e retorne o total.
+// Exercício 4 — Status do processamento
+// Retorne 'ok' se todos os pedidos forem válidos, ou 'erro' se algum for inválido.
+// Exercício 5 — Função principal
+// Use todas as funções anteriores e retorne um objeto com totalFaturado, quantidadePedidos e
+// status.
+// Se status for 'erro', totalFaturado e quantidadePedidos devem ser 0.
+
+// função auxiliar de validação de conteudo
+function validaPedido(pedido) {
+  return (
+    typeof pedido.valor === "number" &&
+    pedido.valor > 0 &&
+    typeof pedido.pago === "boolean"
+  );
+}
+
+// função auxiliar de separação de pedidos validos
+function separaPedidosValidos(pedidos){
+  return pedidos.filter(pedido => validaPedido(pedido));
+}
+
+// função auxiliar de retorno de soma dos itens pagos
+function retornoPedidosPagos(pedidos){
+  return separaPedidosValidos(pedidos).reduce((valorInicial, n) => valorInicial + n.valor, 0);
+}
+
+// função auxiliar de validação de pedido
+function validaPedidos(pedidos){
+  return separaPedidosValidos(pedidos).length === pedidos.length
+  ? `ok`
+  : `erro`;
+}
+
+// função principal de retorno de objeto
+function retornaObjeto(pedidos){
+  return{
+    totalFaturado:retornoPedidosPagos(pedidos),
+    quantidadePedidos:separaPedidosValidos(pedidos).length,
+    status:validaPedidos(pedidos)
+  };
+}
+
+
+console.log(retornaObjeto(
+  [
+    {valor:4,pago:false},
+    {valor:33,pago:false},
+    {valor:53,pago:true},
+  ]))
