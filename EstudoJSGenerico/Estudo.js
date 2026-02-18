@@ -747,7 +747,9 @@ console.log(necessidadePagar([
 // status.
 // Se status for 'erro', totalFaturado e quantidadePedidos devem ser 0.
 
-// função auxiliar de validação de conteudo
+// ------------------Funções de validaçãp---------------------
+
+// função auxiliar de validação de pedidos
 function validaPedido(pedido) {
   return (
     typeof pedido.valor === "number" &&
@@ -756,14 +758,9 @@ function validaPedido(pedido) {
   );
 }
 
-// função auxiliar de separação de pedidos validos
-function separaPedidosValidos(pedidos){
-  return pedidos.filter(pedido => validaPedido(pedido));
-}
-
-// função auxiliar de retorno de soma dos itens pagos
-function retornoPedidosPagos(pedidos){
-  return separaPedidosValidos(pedidos).reduce((valorInicial, n) => valorInicial + n.valor, 0);
+//função auxiliar de validação de pagamento
+function validaPedidosPagos(pedido){
+  return pedido.pago;
 }
 
 // função auxiliar de validação de pedido
@@ -773,19 +770,50 @@ function validaPedidos(pedidos){
   : `erro`;
 }
 
-// função principal de retorno de objeto
-function retornaObjeto(pedidos){
-  return{
-    totalFaturado:retornoPedidosPagos(pedidos),
-    quantidadePedidos:separaPedidosValidos(pedidos).length,
-    status:validaPedidos(pedidos)
-  };
+// ------------------------------------------------------
+// -----------------Funções de filtro--------------------
+
+// função auxiliar de separação de pedidos validos
+function separaPedidosValidos(pedidos){
+  return pedidos.filter(pedido => validaPedido(pedido));
 }
 
+//função auxiliar de separação de pedidos pagos
+ function separaPedidosPagos(pedidos){
+   return separaPedidosValidos(pedidos).filter(pedido => validaPedidosPagos(pedido));
+ }
 
+// ------------------------------------------------------
+// -----------------Funções de retorno-------------------
+
+// função auxiliar de retorno de soma dos itens pagos
+function retornoPedidosPagos(pedidos){
+  return separaPedidosPagos(pedidos).reduce((valorInicial, somaValor) => valorInicial + somaValor.valor, 0);
+}
+
+// função principal de retorno de objeto
+function retornaObjeto(pedidos){
+  if(validaPedidos(pedidos) === `ok`){
+    return{
+      totalFaturado:retornoPedidosPagos(pedidos),
+      quantidadePedidos:separaPedidosValidos(pedidos).length,
+      status:validaPedidos(pedidos)
+    };
+  } else {
+    return{
+      totalFaturado:0,
+      quantidadePedidos:0,
+      status:validaPedidos(pedidos)
+    };
+  }
+}
+
+// ------------------------------------------------------
+// ---------------Retorno de informações-----------------
 console.log(retornaObjeto(
   [
-    {valor:4,pago:false},
+    {valor:1,pago:false},
     {valor:33,pago:false},
     {valor:53,pago:true},
   ]))
+// ------------------------------------------------------
