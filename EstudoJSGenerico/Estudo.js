@@ -823,13 +823,38 @@ console.log(retornaObjeto(
 // --------------------------------------------------------BanckENDEstudos--------------------------------------------------------------------------------------------
 
 
-function validaPedido(pedido){
+// Exercícios do dia (sem resolver aqui)
+// Exercício 1 — Guard clauses (early return) no processamento
+// Implemente uma função que recebe uma lista de pedidos e devolve retorno estruturado.
+// Ela deve interromper cedo quando a entrada não permite processamento.
+// processOrders(pedidos) -> { ok, value? , error? }
+// • Se pedidos não for array: retornar erro INVALID_INPUT.
+// • Se pedidos for array vazio: retornar erro EMPTY_LIST.
+// • Se existir algum pedido inválido (use sua validação do Dia 1): retornar erro
+// INVALID_ORDER.
+
+
+function validaPedidos(pedidos){
+  //Valida se é um array
+  if(!Array.isArray(pedidos)) return {ok:false,code:"INVALID_INPUT"};
   
-  if(array.isArray(pedido)) return {ok:false, error:"INVALID_INPUT"};
-  if(pedido.length === 0) return {ok:false, error:"EMPTY_LIST"};
-  if(typeof pedido.valor != "number" && typeof pedido.pago != "boolean") return {ok:false, error:"INVALID_ORDER"};
-  return {ok:true, value:pedido.pago}
+  //Valida se o array é vazio
+  if(pedidos.length === 0) return {ok:false, code:"EMPTY_LIST"};
   
+  //Valida a integridade de entrada
+  if(
+      !pedidos.every(pedido => typeof pedido.valor === "number") ||
+      !pedidos.every(pedido => pedido.valor > 0) ||
+      !pedidos.every(pedido => typeof pedido.pago === "boolean")
+  ) 
+      return {ok:false, code:"INVALID_ORDER"};
+  
+  //Retorno feliz
+  return {ok:true, value:pedidos}
 }
 
-console.log(validaPedido({valor:32,pago:true}));
+console.log(validaPedidos([
+  {valor:10,pago:true},
+  {valor:40,pago:true},
+  {valor:10,pago:true}
+]));
