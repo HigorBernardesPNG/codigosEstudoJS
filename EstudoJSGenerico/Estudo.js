@@ -858,3 +858,28 @@ console.log(validaPedidos([
   {valor:40,pago:true},
   {valor:10,pago:true}
 ]));
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function validaPedidos(pedidos){
+  //Valida se é um array
+  if(!Array.isArray(pedidos)) return {ok:false,code:"INVALID_INPUT"};
+  
+  //Valida se o array é vazio
+  if(pedidos.length === 0) return {ok:false, code:"EMPTY_LIST"};
+  
+  //Valida a integridade de entrada
+  if(
+      !pedidos.every(pedido => typeof pedido.valor === "number" || typeof pedido.pago === "boolean" || pedido.valor > 0)          
+    ) 
+      return {ok:false, code:"INVALID_ORDER"};
+  
+  //Retorno feliz
+  return {ok:true, value:pedidos}
+}
+
+console.log(validaPedidos([
+  {valor:10,pago:true},
+  {valor:40,pago:true},
+  {valor:10,pago:true}
+]));
