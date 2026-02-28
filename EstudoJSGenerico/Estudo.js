@@ -834,9 +834,9 @@ console.log(retornaObjeto(
 // INVALID_ORDER.
 
 const listaPedidos = [
-  {valor:1,pago:true},
-  {valor:1,pago:true},
-  {valor:1,pago:true}
+  {valor:4,pago:false},
+  {valor:1,pago:false},
+  {valor:1,pago:false}
 ];
 
 function ehPedidoValido(pedido){
@@ -851,7 +851,42 @@ function todosPedidosSaoValidos(pedidos){
   return pedidos.every(ehPedidoValido);
 }
 
-console.log(todosPedidosSaoValidos(listaPedidos));
+//----------------------Filtragens/conversão-----------------------
+
+function filtraPedidosValidos(pedidos){
+  return pedidos.filter(pedido => ehPedidoValido(pedido)).length;
+}
+
+function filtraPedidosPagos(pedidos){
+  return pedidos.filter(pedido => ehPedidoValido(pedido) && pedido.pago === true);
+}
+
+function converteQuantidadePedidosPagosLength(pedidos){
+  return filtraPedidosPagos(pedidos).length
+}
+
+function somaPedidosPagos(pedidos){
+  return filtraPedidosPagos(pedidos).reduce((acc,pedido) => acc + pedido.valor , 0)
+}
+
+// console.log(ehPedidoValido(pedido));
+// console.log(somaPedidosPagos(listaPedidos));
+
+//------------------------------------------------------
+
+//-------------------Resumo de dados--------------------
+
+function montarResultados(pedidos){
+  return {
+    ok:true, 
+    value:{totalPago:converteQuantidadePedidosPagosLength(pedidos),
+           qtdValidos:filtraPedidosValidos(pedidos),
+           qtdPagos:somaPedidosPagos(pedidos)
+          }
+  }
+}
+
+//-------------------------------------------------------
 
 function processarPedidos(pedidos){
   //Valida se é um array
@@ -865,7 +900,7 @@ function processarPedidos(pedidos){
       return {ok:false, code:"INVALID_ORDER"};
   
   //Retorno feliz
-  return {ok:true, value:pedidos}
+  return montarResultados(pedidos)
 }
 
 console.log(processarPedidos(listaPedidos));
