@@ -851,9 +851,9 @@ function todosPedidosSaoValidos(pedidos){
   return pedidos.every(ehPedidoValido);
 }
 
-//-------------------Resulmo de dados--------------------
+//-------------------Resumo de dados--------------------
 
-function montarResulmo(pedidos){
+function montarResumo(pedidos){
   const pedidosPagos = pedidos.filter(pedido => pedido.pago === true);
   
   return {
@@ -877,7 +877,7 @@ function processarPedidos(pedidos){
       return {ok:false, code:"INVALID_ORDER"};
   
   //Retorno feliz
-  return {ok:true, value:montarResulmo(pedidos)}
+  return {ok:true, value:montarResumo(pedidos)}
 }
 
 console.log(processarPedidos(listaPedidos));
