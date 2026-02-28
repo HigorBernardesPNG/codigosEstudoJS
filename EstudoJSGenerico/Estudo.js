@@ -834,9 +834,9 @@ console.log(retornaObjeto(
 // INVALID_ORDER.
 
 const listaPedidos = [
-  {valor:4,pago:false},
+  {valor:4,pago:true},
   {valor:1,pago:false},
-  {valor:1,pago:false}
+  {valor:1,pago:true}
 ];
 
 function ehPedidoValido(pedido){
@@ -851,39 +851,16 @@ function todosPedidosSaoValidos(pedidos){
   return pedidos.every(ehPedidoValido);
 }
 
-//----------------------Filtragens/conversão-----------------------
+//-------------------Resulmo de dados--------------------
 
-function filtraPedidosValidos(pedidos){
-  return pedidos.filter(pedido => ehPedidoValido(pedido)).length;
-}
-
-function filtraPedidosPagos(pedidos){
-  return pedidos.filter(pedido => ehPedidoValido(pedido) && pedido.pago === true);
-}
-
-function converteQuantidadePedidosPagosLength(pedidos){
-  return filtraPedidosPagos(pedidos).length
-}
-
-function somaPedidosPagos(pedidos){
-  return filtraPedidosPagos(pedidos).reduce((acc,pedido) => acc + pedido.valor , 0)
-}
-
-// console.log(ehPedidoValido(pedido));
-// console.log(somaPedidosPagos(listaPedidos));
-
-//------------------------------------------------------
-
-//-------------------Resumo de dados--------------------
-
-function montarResultados(pedidos){
+function montarResulmo(pedidos){
+  const pedidosPagos = pedidos.filter(pedido => pedido.pago === true);
+  
   return {
-    ok:true, 
-    value:{totalPago:converteQuantidadePedidosPagosLength(pedidos),
-           qtdValidos:filtraPedidosValidos(pedidos),
-           qtdPagos:somaPedidosPagos(pedidos)
-          }
-  }
+          totalPago: pedidosPagos.reduce((acc,pedido) => acc + pedido.valor , 0),
+          qtdValidos:pedidos.length,
+          qtdPagos: pedidosPagos.length
+        }
 }
 
 //-------------------------------------------------------
@@ -900,7 +877,7 @@ function processarPedidos(pedidos){
       return {ok:false, code:"INVALID_ORDER"};
   
   //Retorno feliz
-  return montarResultados(pedidos)
+  return {ok:true, value:montarResulmo(pedidos)}
 }
 
 console.log(processarPedidos(listaPedidos));
