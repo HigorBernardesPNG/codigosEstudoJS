@@ -833,8 +833,27 @@ console.log(retornaObjeto(
 // • Se existir algum pedido inválido (use sua validação do Dia 1): retornar erro
 // INVALID_ORDER.
 
+const listaPedidos = [
+  {valor:1,pago:true},
+  {valor:1,pago:true},
+  {valor:1,pago:true}
+];
 
-function validaPedidos(pedidos){
+function ehPedidoValido(pedido){
+  return (
+    typeof pedido.valor === "number" && 
+    typeof pedido.pago === "boolean" &&
+    pedido.valor > 0
+  ); 
+}
+
+function todosPedidosSaoValidos(pedidos){
+  return pedidos.every(ehPedidoValido);
+}
+
+console.log(todosPedidosSaoValidos(listaPedidos));
+
+function processarPedidos(pedidos){
   //Valida se é um array
   if(!Array.isArray(pedidos)) return {ok:false,code:"INVALID_INPUT"};
   
@@ -842,44 +861,11 @@ function validaPedidos(pedidos){
   if(pedidos.length === 0) return {ok:false, code:"EMPTY_LIST"};
   
   //Valida a integridade de entrada
-  if(
-      !pedidos.every(pedido => typeof pedido.valor === "number") ||
-      !pedidos.every(pedido => pedido.valor > 0) ||
-      !pedidos.every(pedido => typeof pedido.pago === "boolean")
-  ) 
+  if(!todosPedidosSaoValidos(pedidos)) 
       return {ok:false, code:"INVALID_ORDER"};
   
   //Retorno feliz
   return {ok:true, value:pedidos}
 }
 
-console.log(validaPedidos([
-  {valor:10,pago:true},
-  {valor:40,pago:true},
-  {valor:10,pago:true}
-]));
-
-// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function validaPedidos(pedidos){
-  //Valida se é um array
-  if(!Array.isArray(pedidos)) return {ok:false,code:"INVALID_INPUT"};
-  
-  //Valida se o array é vazio
-  if(pedidos.length === 0) return {ok:false, code:"EMPTY_LIST"};
-  
-  //Valida a integridade de entrada
-  if(
-      !pedidos.every(pedido => typeof pedido.valor === "number" || typeof pedido.pago === "boolean" || pedido.valor > 0)          
-    ) 
-      return {ok:false, code:"INVALID_ORDER"};
-  
-  //Retorno feliz
-  return {ok:true, value:pedidos}
-}
-
-console.log(validaPedidos([
-  {valor:10,pago:true},
-  {valor:40,pago:true},
-  {valor:10,pago:true}
-]));
+console.log(processarPedidos(listaPedidos));
