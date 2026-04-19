@@ -881,3 +881,123 @@ function processarPedidos(pedidos){
 }
 
 console.log(processarPedidos(listaPedidos));
+
+//-------------------------------------------------------
+
+
+/*Desafio:
+Crie uma função construtora ou uma classe para criar objetos que representem Livros. Cada livro deve ter os seguintes atributos:
+
+Título
+Autor
+Ano de publicação
+Método para exibir os detalhes do livro (exibir título, autor e ano).
+
+Instruções:
+
+Crie um objeto livro1 com os valores do título, autor e ano de publicação.
+Exiba os detalhes do livro usando o método que você criou.
+
+Dica: Não vou fornecer a solução completa aqui, mas lembre-se de usar a palavra-chave this ou constructor para atribuir valores aos atributos do objeto, dependendo de como escolher resolver o exercício (função construtora ou classe).
+*/
+
+//class
+/*class Livro {
+  constructor(titulo,autor,anoPublicacao){
+    this.titulo = titulo;
+    this.autor = autor;
+    this.anoPublicacao = anoPublicacao;
+  }
+  exibirDetalhes(){
+    console.log(`Título: ${this.titulo}\nAutor: ${this.autor}\nAno de publicação: ${this.anoPublicacao}`);
+  }
+}
+
+const livro = new Livro ("O Nome do vento", "Higor Bernardes", 2026);
+livro.exibirDetalhes();
+*/
+
+//Função construtora
+function Livro(titulo,autor,anoPublicacao){
+  this.titulo = titulo;
+  this.autor = autor;
+  this.anoPublicacao = anoPublicacao;
+  // this.exibirDetalhes = function (){
+  //   console.log(`Título: ${this.titulo} - Autos: ${this.autor} - ${this.anoPublicacao}`);
+  // } 
+}
+ Livro.prototype.exibirDetalhes = function (){
+    console.log(`Título: ${this.titulo}\nAutor: ${this.autor}\nAno de publicação: ${this.anoPublicacao}`);
+}
+
+const livro = new Livro ("O nome do vento", "Higor Bernardes", 2026);
+livro.exibirDetalhes();
+
+//-------------------------------------------------------
+
+/*
+Crie uma classe chamada ContaBancaria com:
+
+Atributos:
+titular
+saldo
+Métodos:
+depositar(valor) → aumenta o saldo
+sacar(valor) → diminui o saldo
+exibirSaldo() → mostra o saldo atual
+Regras importantes (aqui começa a ficar interessante):
+Não pode sacar mais do que tem
+Se tentar, deve mostrar:
+"Saldo insuficiente"
+O que você deve fazer:
+Criar uma conta
+Depositar um valor
+Sacar um valor válido
+Tentar sacar um valor inválido
+Exibir saldo no final
+⚠️ Dica importante (sem spoiler)
+
+Você vai precisar de:
+
+if
+manipulação direta do this.saldo
+*/
+
+class ContaBancaria {
+  constructor(titular, saldo){
+    this.titular = titular;
+    this.saldo = saldo;
+  }
+  
+  depositar(valorDeposito){
+    if(valorDeposito > 0 && typeof valorSaque == "number"){
+      this.saldo = this.saldo + valorDeposito;
+      console.log(`Seu novo saldo é de: ${this.saldo}`)
+    } else{
+      console.log("Valor invalido.")
+    }
+  }
+  sacar(valorSaque){
+    if (this.saldo > valorSaque && typeof valorSaque === "number"){
+      this.saldo = this.saldo - valorSaque;
+      console.log(`Seu novo saldo é de: ${this.saldo}`);
+    } else {
+      console.log(`Saldo insuficiente`)
+    }
+  }
+  exibirSaldo(){
+    console.log(`\nOlá, ${this.titular}\nSaldo da conta: ${this.saldo}\n`);
+  }
+}
+
+const contaBancaria1 = new ContaBancaria("Higor Bernardes", 0);
+
+contaBancaria1.depositar(0);
+contaBancaria1.sacar(1);
+contaBancaria1.exibirSaldo();
+
+const contaBancaria2 = new ContaBancaria("Jordana Severino", 0);
+
+contaBancaria2.depositar(10);
+contaBancaria2.sacar(1);
+contaBancaria2.exibirSaldo();
