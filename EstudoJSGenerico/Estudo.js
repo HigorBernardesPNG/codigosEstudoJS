@@ -969,35 +969,72 @@ class ContaBancaria {
     this.saldo = saldo;
   }
   
-  depositar(valorDeposito){
-    if(valorDeposito > 0 && typeof valorSaque == "number"){
-      this.saldo = this.saldo + valorDeposito;
-      console.log(`Seu novo saldo é de: ${this.saldo}`)
-    } else{
-      console.log("Valor invalido.")
-    }
+  //Funções Auxiliares --------------------------------------------------
+  
+  ehValorValido(valor){
+    return valor > 0 && typeof valor === "number";
   }
-  sacar(valorSaque){
-    if (this.saldo > valorSaque && typeof valorSaque === "number"){
-      this.saldo = this.saldo - valorSaque;
-      console.log(`Seu novo saldo é de: ${this.saldo}`);
-    } else {
-      console.log(`Saldo insuficiente`)
-    }
+  
+  temSaldoSuficiente(valor){
+    return this.saldo >= valor;
   }
+  
+  mostraSaldoAtualizado(){
+    console.log(`\nTitular da conta: ${this.titular}\nSeu novo saldo é de: ${this.saldo}\n`);
+  }
+  
+  //---------------------------------------------------------------------
+  
+  //Metodos -------------------------------------------------------------
+  
+  depositar(valor){
+    if(!this.ehValorValido(valor)){
+      console.log("Valor invalido.");
+      return
+    }
+    this.saldo += valor;
+     this.mostraSaldoAtualizado();
+     return
+  }
+  
+  sacar(valor){
+    if(!this.ehValorValido(valor)){
+      console.log("Valor invalido.");
+      return
+    }
+    if(!this.temSaldoSuficiente(valor)){
+      console.log("Saldo insuficiente.");
+      return
+    }
+    this.saldo -= valor;
+    return this.mostraSaldoAtualizado();
+  }
+  
   exibirSaldo(){
     console.log(`\nOlá, ${this.titular}\nSaldo da conta: ${this.saldo}\n`);
   }
+  
+  //----------------------------------------------------------------------
 }
 
-const contaBancaria1 = new ContaBancaria("Higor Bernardes", 0);
+const contaBancaria1 = new ContaBancaria("Higor Bernardes", 4);
 
-contaBancaria1.depositar(0);
-contaBancaria1.sacar(1);
+contaBancaria1.depositar(4);
+contaBancaria1.sacar(4);
 contaBancaria1.exibirSaldo();
+contaBancaria1.sacar(5);
+contaBancaria1.sacar(true);
+contaBancaria1.depositar(true);
 
-const contaBancaria2 = new ContaBancaria("Jordana Severino", 0);
+console.log("---------------Nova conta---------------");
 
-contaBancaria2.depositar(10);
-contaBancaria2.sacar(1);
+const contaBancaria2 = new ContaBancaria("Jordana Serverino", 4);
+
+contaBancaria2.depositar(4);
+contaBancaria2.sacar(4);
 contaBancaria2.exibirSaldo();
+contaBancaria2.sacar(5);
+contaBancaria2.sacar(true);
+contaBancaria2.depositar(true);
+
+//-------------------------------------------------------
